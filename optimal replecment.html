@@ -83,6 +83,27 @@ body{
   text-align: center;
   font-size:larger;
 }
+        .pagefault{
+  
+  background-color: white;
+    color:black;
+    height:50px;
+    width:50px;
+    
+    text-align: center;
+    font-size: 30px;
+    
+}
+.headhit{
+  background-color: black;
+  color:white;
+  width:50%;
+}
+.headmiss{
+  background-color: black;
+  color:white;
+  width:50%;
+}
     </style>
 </head>
 <body>
@@ -113,11 +134,12 @@ body{
 
       
         
-        
+        var pagehit=0;
+          var pagefault=0;
   var arr=[];   
   var count=0;
           var j=0;
- function fun()
+ function myfun()
           {
     
   
@@ -208,15 +230,40 @@ for(var i = 0; i < framesize; i++){
     var new_div=document.createElement("div");
     new_div.className="hel";
     document.body.appendChild(new_div).innerHTML="HIT";
+      pagehit++;
   }
   else{
     var new_div=document.createElement("div");
     new_div.className="hel";
     document.body.appendChild(new_div).innerHTML="MISS";
+      pagefault++;
   }
+      if(j>=arrsize-1)
+{
+  result();
+    clearInterval();
+}
+else{
+    setTimeout(myfun,1000);
+}
   j++;
     }
 myfun();
+function result()
+{
+  var new_div=document.createElement("h1");
+    new_div.className="headhit";
+    document.body.appendChild(new_div).innerHTML="Number of page hit";
+  var new_div=document.createElement("div");
+    new_div.className="pagehit";
+    document.body.appendChild(new_div).innerHTML=pagehit;
+    var new_div=document.createElement("h1");
+    new_div.className="headmiss";
+    document.body.appendChild(new_div).innerHTML="Number of page miss";
+    var new_div=document.createElement("div");
+    new_div.className="pagefault";
+    document.body.appendChild(new_div).innerHTML=pagefault;
+}
         
       </script>
 </body>
