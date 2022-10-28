@@ -83,7 +83,16 @@ body{
   text-align: center;
   font-size:larger;
 }
-        .pagefault{
+.pagehit{
+    background-color: white;
+    color:black;
+    height:50px;
+    width:50px;
+  text-align: center;
+  font-size: 30px;
+      
+}
+.pagefault{
   
   background-color: white;
     color:black;
@@ -111,10 +120,10 @@ body{
  <h1>input</h1>
 </div>
       <script>
-        var arrsize=prompt("enter nubar of size");
+        var arrsize=prompt("enter array size");
         var array=[arrsize];
         var framesize=prompt("enter frame size");
-        var string1=prompt("enter the pages as string saperated by commas(,)");
+        var string1=prompt("enter the pages as string");
         array=string1.split(',').map(Number);
         
       for(var o=0;o<arrsize;o++)
@@ -134,13 +143,13 @@ body{
 
       
         
-        var pagehit=0;
-          var pagefault=0;
+        
   var arr=[];   
-  var count=0;
-          var j=0;
+  var j=0;   
+  var pagemiss=0;
+  var pagehit=0;
  function myfun()
-          {
+ {  
     
   
   if(arr.includes(array[j])==false)
@@ -151,7 +160,11 @@ body{
     {
         var max1=0;
         var count=0;
-      var flag=false;
+       
+        
+         
+          
+            var flag=false;
             for(var u=0;u<framesize;u++)
             {
                 for(var t=j+1;t<arrsize;t++)
@@ -204,7 +217,13 @@ body{
         else{
             arr.push(array[j]);
         }
-       for(var i = 0; i < framesize; i++){
+       }
+  
+  
+  
+  
+  
+for(var i = 0; i < framesize; i++){
     var new_div = document.createElement("div");
     new_div.className = "hello";
    
@@ -220,24 +239,24 @@ body{
     var new_div=document.createElement("div");
     new_div.className="hel";
     document.body.appendChild(new_div).innerHTML="HIT";
-      pagehit++;
+    pagehit++;
   }
   else{
     var new_div=document.createElement("div");
     new_div.className="hel";
     document.body.appendChild(new_div).innerHTML="MISS";
-      pagefault++;
+    pagemiss++;
   }
-      if(j>=arrsize-1)
+  if(j>=arrsize-1)
 {
-  result();
     clearInterval();
+    result();
 }
 else{
     setTimeout(myfun,1000);
 }
-  j++;
-    }
+j++;
+ }
 myfun();
 function result()
 {
@@ -252,9 +271,11 @@ function result()
     document.body.appendChild(new_div).innerHTML="Number of page miss";
     var new_div=document.createElement("div");
     new_div.className="pagefault";
-    document.body.appendChild(new_div).innerHTML=pagefault;
+    document.body.appendChild(new_div).innerHTML=pagemiss;
 }
+
         
       </script>
+     
 </body>
 </html>
