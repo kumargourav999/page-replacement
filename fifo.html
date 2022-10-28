@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .parent{
+        display:flex;
+        flex-direction:row;
+      }
+     .hello {
+  width: 15px;
+  height:10px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  font-size: 15px;
+  padding: 10px;
+  text-align:center ;
+  border-style:solid;
+  
+  
+  background-color: white;
+  
+  /*box-shadow: 2px 2px 2px 2px black;*/
+  
+  
+  
+}
+.div1{
+  width: 20px;
+  height:20px;
+  margin: 15px;
+  padding: 10px;
+  text-align: center;
+  
+  
+  background-color:white;
+ /* box-shadow:2px 2px 2px 2px black ;*/
+  
+  display:inline-block;
+  
+  
+}
+h1{
+  text-align: center;
+}
+#id1{
+ height:70px;
+  width:70px;
+  background-color: black;
+  
+  text-align: center;
+  color:white;
+  
+  
+ 
+}
+body{
+  background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbilU3-Z3JD8RP60nHLSpePV-KjfYlhj8lSAJChoJzyY9TXuez-ks8Rx2zOCuBxpwGGtc&usqp=CAU);
+}
+.hel{
+  background-color: black;
+ 
+  color:white;
+  /*box-shadow:5px 5px 5px 5px black ;*/
+  width:30%;
+}
+.frame{
+  
+  width:300px;
+  background-color: black;
+  color: aliceblue;
+  text-align: center;
+  font-size:larger;
+}
+.frame1{
+  background-color: aliceblue;
+  width:300px;
+  
+  text-align: center;
+  font-size:larger;
+}
+.pagehit{
+    background-color: white;
+    color:black;
+    height:50px;
+    width:50px;
+  text-align: center;
+  font-size: 30px;
+      
+}
+.pagefault{
+  
+  background-color: white;
+    color:black;
+    height:50px;
+    width:50px;
+    
+    text-align: center;
+    font-size: 30px;
+    
+}
+.headhit{
+  background-color: black;
+  color:white;
+  width:50%;
+}
+.headmiss{
+  background-color: black;
+  color:white;
+  width:50%;
+}
+.textnode{
+  font-size: 30px;
+  background-color: black;
+}
+    </style>
+</head>
+<body>
+  <div id="id1">
+ <h1>input</h1>
+</div>
+      <script>
+        var arrsize=prompt("enter array size");
+      
+        var array=[arrsize];
+        var framesize=prompt("enter frame size");
+        var string1=prompt("enter the pages as string");
+        array=string1.split(',').map(Number);
+        
+      for(var o=0;o<arrsize;o++)
+      {
+        var new_div = document.createElement("div");
+    new_div.className = "div1";
+    document.body.appendChild(new_div).innerHTML=array[o];
+    
+      }
+      var framediv=document.createElement("h1");
+      framediv.className="frame";
+      document.body.appendChild(framediv).innerHTML="number of frame";
+
+      var framediv1=document.createElement("h1");
+      framediv1.className="frame1";
+      document.body.appendChild(framediv1).innerHTML=framesize;
+
+      
+        
+        
+  var arr=[];   
+  var count=0;   
+  
+
+ 
+   
+  
+   var j=-1;
+  var c=0;
+  var pagehit=0;
+  var pagemiss=0;
+  function myfun()
+  {
+    j++;
+    flag=0;
+  if(arr.includes(array[j])==false)
+  {
+   
+    
+    if(arr.length==framesize)
+    {
+        var index=count%framesize;
+        count++;
+         
+          
+            
+           
+            arr.splice(index,1);
+            arr.splice(index,0,array[j]);
+        }
+        else{
+            arr.push(array[j]);
+        }
+       }
+       else{
+        flag++;
+       }
+      
+       for(var it=0;it<framesize;it++)
+       {
+        var new_div = document.createElement("div");
+    new_div.className = "hello";
+    if(it<arr.length)
+    document.body.appendChild(new_div).innerHTML=arr[it];
+    else
+    document.body.appendChild(new_div).innerHTML;
+       }
+     if(flag==1)
+  {
+    var new_div=document.createElement("div");
+    new_div.className="hel";
+    document.body.appendChild(new_div).innerHTML="HIT";
+    pagehit++;
+  }
+  else{
+    var new_div=document.createElement("div");
+    new_div.className="hel";
+    document.body.appendChild(new_div).innerHTML="MISS";
+     pagemiss++;
+  }
+
+ 
+  if(j>=arrsize-1)
+{
+  result();
+    clearInterval();
+    
+}
+else{
+    setTimeout(myfun,1000);
+}
+
+}
+myfun();
+function result()
+{
+  var new_div=document.createElement("h1");
+    new_div.className="headhit";
+    document.body.appendChild(new_div).innerHTML="Number of page hit";
+  var new_div=document.createElement("div");
+    new_div.className="pagehit";
+    document.body.appendChild(new_div).innerHTML=pagehit;
+    var new_div=document.createElement("h1");
+    new_div.className="headmiss";
+    document.body.appendChild(new_div).innerHTML="Number of page miss";
+    var new_div=document.createElement("div");
+    new_div.className="pagefault";
+    document.body.appendChild(new_div).innerHTML=pagemiss;
+    
+}
+ </script>
+  
+</body>
+</html>

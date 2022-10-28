@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .parent{
+        display:flex;
+        flex-direction:row;
+      }
+     .hello {
+  width: 15px;
+  height:10px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  font-size: 15px;
+  padding: 10px;
+  text-align:center ;
+  border-style:solid;
+  
+  
+  background-color: white;
+  
+  /*box-shadow: 2px 2px 2px 2px black;*/
+  
+  
+  
+}
+.div1{
+  width: 20px;
+  height:20px;
+  margin: 15px;
+  padding: 10px;
+  text-align: center;
+  
+  
+  background-color:white;
+ /* box-shadow:2px 2px 2px 2px black ;*/
+  
+  display:inline-block;
+  
+  
+}
+h1{
+  text-align: center;
+}
+#id1{
+ height:70px;
+  width:70px;
+  background-color: black;
+  
+  text-align: center;
+  color:white;
+  
+  
+ 
+}
+body{
+  background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbilU3-Z3JD8RP60nHLSpePV-KjfYlhj8lSAJChoJzyY9TXuez-ks8Rx2zOCuBxpwGGtc&usqp=CAU);
+}
+.hel{
+  background-color: black;
+ 
+  color:white;
+  /*box-shadow:5px 5px 5px 5px black ;*/
+  width:50%;
+}
+.frame{
+  
+  width:300px;
+  background-color: black;
+  color: aliceblue;
+  text-align: center;
+  font-size:larger;
+}
+.frame1{
+  background-color: aliceblue;
+  width:300px;
+  
+  text-align: center;
+  font-size:larger;
+}
+    </style>
+</head>
+<body>
+  <div id="id1">
+ <h1>input</h1>
+</div>
+      <script>
+        var arrsize=prompt("enter array size");
+        var array=[arrsize];
+        var framesize=prompt("enter frame size");
+        var string1=prompt("enter the pages as string");
+        array=string1.split(',').map(Number);
+        
+      for(var o=0;o<arrsize;o++)
+      {
+        var new_div = document.createElement("div");
+    new_div.className = "div1";
+    document.body.appendChild(new_div).innerHTML=array[o];
+    
+      }
+      var framediv=document.createElement("h1");
+      framediv.className="frame";
+      document.body.appendChild(framediv).innerHTML="number of frame";
+
+      var framediv1=document.createElement("h1");
+      framediv1.className="frame1";
+      document.body.appendChild(framediv1).innerHTML=framesize;
+
+      
+        
+        
+  var arr=[];   
+  var count=0;    
+ for(var j=0;j<arrsize;j++)  
+ {   
+    
+  
+  if(arr.includes(array[j])==false)
+  {
+   
+    
+    if(arr.length==framesize)
+    {
+        var max1=0;
+        var count=0;
+       
+        
+         
+          
+            var flag=false;
+            for(var u=0;u<framesize;u++)
+            {
+                for(var t=j+1;t<arrsize;t++)
+                {
+                if(arr[u]==array[t])
+                {
+                    flag=true;
+                    if(t>max1)
+                    {
+                        max1=t;
+                        
+                    }
+                    break;
+                    
+                }
+                
+            }
+            if(flag==false)
+                {
+                    max1=u;
+                  break;  
+                }
+            }
+            var index;
+            var replaceEle;
+            if(flag)
+            {
+             replaceEle=array[max1];
+            
+            index=0;
+            for(var y=0;y<framesize;y++)
+            {
+                if(arr[y]==replaceEle)
+                {
+                    index=y;
+                }
+            }
+        }
+        else{
+            
+            
+             index=max1;
+        }
+        
+          
+           
+            arr.splice(index,1);
+            arr.splice(index,0,array[j]);
+        }
+        else{
+            arr.push(array[j]);
+        }
+       }
+  
+  
+  
+  
+  
+for(var i = 0; i < framesize; i++){
+    var new_div = document.createElement("div");
+    new_div.className = "hello";
+   
+    
+    if(i<arr.length)
+    document.body.appendChild(new_div).innerHTML=arr[i];
+    else
+    document.body.appendChild(new_div).innerHTML="n/a";
+    
+  }
+  if(count==0)
+  {
+    var new_div=document.createElement("div");
+    new_div.className="hel";
+    document.body.appendChild(new_div).innerHTML="HIT";
+  }
+  else{
+    var new_div=document.createElement("div");
+    new_div.className="hel";
+    document.body.appendChild(new_div).innerHTML="MISS";
+  }
+  
+    }
+
+        
+      </script>
+</body>
+</html>
